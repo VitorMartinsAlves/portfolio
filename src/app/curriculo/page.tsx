@@ -2,10 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PrintButton } from "@/components/print-button";
 import { education, experiences, profile, projects, skillGroups } from "@/data/portfolio";
+import { siteUrl } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "Currículo | Vitor Martins",
   description: "Currículo profissional de Vitor Martins, Desenvolvedor Full Stack.",
+  alternates: {
+    canonical: `${siteUrl}/curriculo/`,
+  },
   robots: { index: true, follow: true },
 };
 
