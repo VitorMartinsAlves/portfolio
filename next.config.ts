@@ -1,24 +1,18 @@
 import type { NextConfig } from "next";
 
+// GitHub Pages hosts project sites below /<repository-name>/.
+// Keep local development at http://localhost:3000.
+const isGitHubPages = process.env.GITHUB_PAGES === "true";
+
 const nextConfig: NextConfig = {
+  output: "export",
+  trailingSlash: true,
+  basePath: isGitHubPages ? "/portfolio" : "",
+  images: {
+    unoptimized: true,
+  },
   poweredByHeader: false,
   reactStrictMode: true,
-  async headers() {
-    return [
-      {
-        source: "/:path*",
-        headers: [
-          { key: "X-Content-Type-Options", value: "nosniff" },
-          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-          { key: "X-Frame-Options", value: "DENY" },
-          {
-            key: "Permissions-Policy",
-            value: "camera=(), microphone=(), geolocation=()",
-          },
-        ],
-      },
-    ];
-  },
 };
 
 export default nextConfig;

@@ -1,19 +1,16 @@
 # Vitor Martins — Portfólio
 
-Portfólio profissional e currículo online de Vitor Martins, desenvolvido com Next.js, React e TypeScript.
+Portfólio profissional e currículo online de Vitor Martins, desenvolvido com Next.js, React e TypeScript e publicado no GitHub Pages por meio de exportação estática.
 
-O conteúdo foi organizado para que recrutadores e equipes técnicas encontrem rapidamente:
-- área de atuação e principais tecnologias;
-- projetos com contexto, contribuição e limitações conhecidas;
-- experiência profissional e formação;
-- links de contato e uma versão de currículo pronta para impressão.
+**Site:** https://vitormartinsalves.github.io/portfolio/
 
 ## Stack
 
-- Next.js 16 (App Router)
+- Next.js 16 (App Router, static export)
 - React 19
 - TypeScript
 - CSS responsivo, sem biblioteca visual adicional
+- GitHub Actions + GitHub Pages
 
 ## Rodar localmente
 
@@ -34,7 +31,7 @@ npm run typecheck
 npm run build
 ```
 
-O GitHub Actions executa essas três verificações em pushes e pull requests para a branch principal.
+O workflow de CI executa essas verificações em pull requests. O workflow de publicação repete as verificações antes de gerar e publicar os arquivos estáticos.
 
 ## Atualizar informações
 
@@ -48,22 +45,24 @@ Os projetos são descritos sem métricas inventadas. O trabalho da Aliança é a
 
 ## Currículo em PDF
 
-Acesse `/curriculo` e use **Salvar em PDF**. A página aplica estilos de impressão em A4 e pode ser salva como PDF pelo navegador.
+Acesse `/portfolio/curriculo/` e use **Salvar em PDF**. A página aplica estilos de impressão em A4 e pode ser salva como PDF pelo navegador.
 
-## Publicação
+## Publicação no GitHub Pages
 
-O projeto pode ser publicado na Vercel ou em outro ambiente que execute Next.js.
+O site é publicado automaticamente em:
 
-Configure a variável de ambiente `NEXT_PUBLIC_SITE_URL` com a URL pública completa do site (sem barra no final). Ela é usada como base dos metadados e para gerar `robots.txt` e `sitemap.xml`.
+`https://vitormartinsalves.github.io/portfolio/`
 
-O arquivo `.env.example` mostra o formato esperado. Não há domínio de produção fixado no código.
+O workflow `.github/workflows/deploy.yml`:
+1. instala as dependências;
+2. executa ESLint e TypeScript;
+3. gera o site estático com `output: "export"` e `basePath: "/portfolio"`;
+4. envia a pasta `out` para o GitHub Pages.
 
-## Acessibilidade e experiência
+Para habilitar a primeira publicação, confira em **Settings → Pages → Build and deployment → Source** se a opção **GitHub Actions** está selecionada. Depois disso, cada push na branch `main` publica uma nova versão.
 
-- HTML semântico e navegação por âncoras;
-- link para pular diretamente ao conteúdo;
-- estados de foco visíveis para teclado;
-- layout adaptável a telas menores;
-- respeito à preferência por movimento reduzido;
-- links externos identificados e abertos com `rel="noreferrer"`;
-- currículo com layout específico para impressão.
+O `basePath` só é aplicado no workflow de publicação. O servidor local continua disponível em `http://localhost:3000`.
+
+## Limitações do GitHub Pages
+
+O GitHub Pages hospeda apenas arquivos estáticos. Recursos do Next.js que exigem servidor Node.js (por exemplo, API Routes, Server Actions, SSR sob demanda e otimização de imagens no servidor) não estão disponíveis neste deploy. As páginas deste portfólio são pré-geradas no build.

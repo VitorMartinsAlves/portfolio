@@ -1,8 +1,6 @@
 name: Quality checks
 
 on:
-  push:
-    branches: [main]
   pull_request:
     branches: [main]
 
@@ -14,12 +12,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version-file: .nvmrc
+          cache: npm
 
       - name: Install dependencies
         run: npm install --no-audit --no-fund
@@ -30,5 +29,5 @@ jobs:
       - name: Check TypeScript
         run: npm run typecheck
 
-      - name: Build for production
+      - name: Build static site
         run: npm run build

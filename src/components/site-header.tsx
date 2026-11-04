@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { profile } from "@/data/portfolio";
 
 const navigation = [
@@ -20,7 +21,7 @@ export function SiteHeader() {
             {item.label}
           </a>
         ))}
-        <a href="/curriculo">Currículo</a>
+        <Link href="/curriculo/">Currículo</Link>
       </nav>
 
       <a className="header-contact" href={`mailto:${profile.email}?subject=Oportunidade%20profissional`}>

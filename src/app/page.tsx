@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ProjectCard } from "@/components/project-card";
 import { SectionHeading } from "@/components/section-heading";
 import { SiteFooter } from "@/components/site-footer";
@@ -60,7 +61,7 @@ export default function HomePage() {
               <a href={profile.github} target="_blank" rel="noreferrer">
                 GitHub ↗
               </a>
-              <a href="/curriculo">Currículo para impressão ↗</a>
+              <Link href="/curriculo/">Currículo para impressão ↗</Link>
             </div>
           </div>
 
