@@ -8,7 +8,7 @@ const description =
   "Portfólio de Vitor Martins: desenvolvimento full stack, aplicações web, APIs, integrações e automações.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(`${siteUrl}/`),
   title,
   description,
   applicationName: "Vitor Martins — Portfólio",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     "Desenvolvimento Web",
   ],
   alternates: {
-    canonical: "/",
+    canonical: `${siteUrl}/`,
   },
   openGraph: {
     type: "website",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     title,
     description,
     siteName: "Vitor Martins",
-    url: siteUrl,
+    url: `${siteUrl}/`,
   },
   twitter: {
     card: "summary_large_image",
