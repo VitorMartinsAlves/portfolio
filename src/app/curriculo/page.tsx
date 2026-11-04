@@ -1,14 +1,22 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PrintButton } from "@/components/print-button";
-import { education, experiences, profile, projects, skillGroups } from "@/data/portfolio";
-import { siteUrl } from "@/data/site";
+import {
+  certifications,
+  education,
+  experienceGroups,
+  languages,
+  profile,
+  projects,
+  skillGroups,
+} from "@/data/portfolio";
 
 export const metadata: Metadata = {
   title: "Currículo | Vitor Martins",
-  description: "Currículo profissional de Vitor Martins, Desenvolvedor Full Stack.",
+  description:
+    "Currículo de Vitor Martins, Desenvolvedor Full Stack com experiência em Node.js, React, Python, APIs e bancos de dados.",
   alternates: {
-    canonical: `${siteUrl}/curriculo/`,
+    canonical: "https://vitormartinsalves.github.io/portfolio/curriculo/",
   },
   robots: { index: true, follow: true },
 };
@@ -23,35 +31,53 @@ export default function ResumePage() {
 
       <article className="resume-document">
         <header className="resume-header">
-          <div>
-            <p className="resume-kicker">Currículo profissional</p>
-            <h1>{profile.name}</h1>
-            <p className="resume-role">{profile.role}</p>
-            <p className="resume-summary">{profile.intro}</p>
-          </div>
-          <div className="resume-contact">
-            <a href={`mailto:${profile.email}`}>{profile.email}</a>
-            <a href={profile.linkedin}>{profile.linkedin.replace("https://", "")}</a>
-            <a href={profile.github}>{profile.github.replace("https://", "")}</a>
-          </div>
+          <h1>{profile.name}</h1>
+          <p className="resume-title">{profile.title} | Backend Developer</p>
+          <p className="resume-location">
+            {profile.location} · {profile.workModel}
+          </p>
+          <p className="resume-contact-line">
+            E-mail: {profile.email} | LinkedIn: linkedin.com/in/vitormartinsalves
+            | GitHub: github.com/VitorMartinsAlves
+          </p>
+          <p className="resume-summary">{profile.summary}</p>
         </header>
 
         <section className="resume-section">
+          <h2>Competências técnicas</h2>
+          {skillGroups.map((group) => (
+            <p className="resume-skill-line" key={group.title}>
+              <strong>{group.title}:</strong> {group.skills.join(", ")}.
+            </p>
+          ))}
+          <p className="resume-skill-line">
+            <strong>Outras competências:</strong> Suporte técnico, Help Desk,
+            diagnóstico e reprodução de bugs, testes de funcionalidades, Google
+            Workspace, Adobe Photoshop, Adobe After Effects e Adobe Illustrator.
+          </p>
+        </section>
+
+        <section className="resume-section">
           <h2>Experiência profissional</h2>
-          {experiences.map((experience) => (
-            <div className="resume-experience" key={experience.company}>
-              <div className="resume-company-line">
-                <h3>{experience.company}</h3>
-                <span>{experience.period}</span>
+          {experienceGroups.map((group) => (
+            <div className="resume-company" key={group.company}>
+              <div className="resume-company-heading">
+                <h3>{group.company}</h3>
+                <span>{group.period}</span>
               </div>
-              <p>{experience.summary}</p>
-              {experience.roles.map((role) => (
-                <div className="resume-role-entry" key={role.title}>
-                  <div className="resume-company-line">
+
+              {group.roles.map((role) => (
+                <div className="resume-role" key={role.title}>
+                  <div className="resume-role-heading">
                     <h4>{role.title}</h4>
-                    <span>{role.period}</span>
+                    <span>{role.period} · {role.type}</span>
                   </div>
-                  <p>{role.description}</p>
+                  <p>{role.summary}</p>
+                  <ul>
+                    {role.highlights.map((highlight) => (
+                      <li key={highlight}>{highlight}</li>
+                    ))}
+                  </ul>
                 </div>
               ))}
             </div>
@@ -60,40 +86,60 @@ export default function ResumePage() {
 
         <section className="resume-section">
           <h2>Projetos selecionados</h2>
-          {projects.slice(1).map((project) => (
-            <div className="resume-project" key={project.number}>
-              <div className="resume-company-line">
-                <h3>{project.title}</h3>
-                {project.href ? <a href={project.href}>Repositório ↗</a> : null}
+          {projects.map((project) => (
+            <article className="resume-project" key={project.number}>
+              <div className="resume-company-heading">
+                <h3>{project.name}</h3>
+                <span>{project.period}</span>
               </div>
-              <p>{project.description}</p>
-            </div>
+              <p>{project.summary}</p>
+              <p><strong>Participação:</strong> {project.contribution}</p>
+              <ul>
+                {project.highlights.map((highlight) => (
+                  <li key={highlight}>{highlight}</li>
+                ))}
+              </ul>
+              <p><strong>Tecnologias:</strong> {project.stack.join(", ")}.</p>
+            </article>
           ))}
-          <div className="resume-project">
-            <h3>{projects[0].title}</h3>
-            <p>{projects[0].description}</p>
-          </div>
         </section>
 
         <section className="resume-section">
-          <h2>Competências</h2>
-          <div className="resume-skills">
-            {skillGroups.map((group) => (
-              <p key={group.title}>
-                <strong>{group.title}:</strong> {group.skills.join(" · ")}
-              </p>
-            ))}
-          </div>
+          <h2>Formação acadêmica</h2>
+          {education.map((item) => (
+            <article className="resume-education" key={item.institution}>
+              <div className="resume-company-heading">
+                <h3>{item.course}</h3>
+                <span>{item.period}</span>
+              </div>
+              <p>{item.institution} · {item.status}</p>
+              <p>{item.note}</p>
+              {item.highlights.length > 0 ? (
+                <ul>
+                  {item.highlights.map((highlight) => (
+                    <li key={highlight}>{highlight}</li>
+                  ))}
+                </ul>
+              ) : null}
+            </article>
+          ))}
         </section>
 
-        <section className="resume-section resume-education">
-          <h2>Formação</h2>
-          <div className="resume-company-line">
-            <h3>{education.course}</h3>
-            <span>{education.institution}</span>
-          </div>
-          <p>{education.status} — {education.note}</p>
-          <p>{education.english}</p>
+        <section className="resume-section">
+          <h2>Cursos e certificados</h2>
+          {certifications.map((certification) => (
+            <p className="resume-certification" key={certification.title}>
+              <strong>{certification.title}</strong> — {certification.institution},
+              {" " + certification.issued}.
+            </p>
+          ))}
+        </section>
+
+        <section className="resume-section">
+          <h2>Idiomas</h2>
+          {languages.map((language) => (
+            <p key={language.name}>{language.name}: {language.level}.</p>
+          ))}
         </section>
       </article>
     </main>

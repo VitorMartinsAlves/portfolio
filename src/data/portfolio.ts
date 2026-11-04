@@ -1,93 +1,249 @@
 export const profile = {
   name: "Vitor Martins",
-  role: "Desenvolvedor Full Stack",
-  headline: "Aplicações web, APIs e integrações.",
-  intro:
-    "Atuo entre frontend e backend: desenvolvo interfaces, conecto sistemas e automatizo etapas de processos que fazem parte da operação.",
+  title: "Desenvolvedor Full Stack",
+  headline: "Node.js · React · Python · APIs REST · MySQL · MongoDB",
+  summary:
+    "Desenvolvedor Full Stack com experiência na construção, manutenção e evolução de aplicações web em produção. Atuação do frontend ao backend, integração de APIs, bancos de dados relacionais e NoSQL, automação e infraestrutura. Experiência também em suporte técnico, análise de bugs, testes e validação de funcionalidades antes de deploy.",
+  about:
+    "Minha trajetória combina desenvolvimento de software com experiência direta no atendimento a usuários e áreas de negócio. Já trabalhei próximo dos times comercial, pedagógico, professores e equipes internas, entendendo suas rotinas e transformando demandas em melhorias de sistemas. No desenvolvimento, atuo entre interface, regras de negócio, APIs, dados, integrações e operação em produção.",
+  location: "São Paulo, SP",
+  workModel: "Presencial ou híbrido",
+  availability: "Buscando oportunidades Full Stack ou Backend",
   email: "vitormartinsalves99@gmail.com",
   github: "https://github.com/VitorMartinsAlves",
-  linkedin: "https://linkedin.com/in/vitormartinsalves/",
+  linkedin: "https://www.linkedin.com/in/vitormartinsalves/",
 };
 
-export const projects = [
+export type PortfolioProject = {
+  number: string;
+  name: string;
+  category: string;
+  period: string;
+  summary: string;
+  context: string;
+  contribution: string;
+  highlights: string[];
+  stack: string[];
+  note: string;
+};
+
+export const projects: PortfolioProject[] = [
   {
     number: "01",
-    category: "Experiência profissional",
-    title: "Plataforma comercial e gestão de leads",
-    context: "Aliança · 2025–2026",
-    description:
-      "Desenvolvimento de páginas de campanha e ferramentas internas para acompanhar a captação, a validação e a origem dos leads encaminhados ao time comercial.",
-    details: [
-      "Criação e manutenção de landing pages com React, WordPress e Vite.",
-      "Desenvolvimento de dashboard para acompanhar telefones, pixels e configurações do Google Tag.",
-      "Integração de fluxos com Node.js, MySQL, UTMs e webhooks, incluindo validações e reprocessamento de leads.",
-      "Testes locais e ajustes antes de publicar as alterações.",
+    name: "Ecossistema de Landing Pages, Leads e Analytics",
+    category: "Projeto profissional · Aliança",
+    period: "2025 — 2026",
+    summary:
+      "Conjunto integrado de aplicações para campanhas digitais da Aliança: múltiplas landing pages em React, API para recebimento e encaminhamento de leads e dashboard administrativo para acompanhar captação, tráfego e operação comercial.",
+    context:
+      "O trabalho conecta dois repositórios que cumprem papéis complementares: o alianca-lps reúne as experiências de landing pages; o dash-monorepo concentra a API e o painel operacional, com serviços organizados em workspaces e execução via Docker Compose.",
+    contribution:
+      "Desenvolvimento e manutenção full stack das interfaces, serviços e integrações, participando do fluxo desde a captura de dados na página até sua validação, encaminhamento e acompanhamento pelo dashboard.",
+    highlights: [
+      "Consolidação de diferentes experiências de campanha — Premium, Principal, Copa, Institucional e Summer XP — em uma aplicação React/Vite com carregamento por rota e configuração compartilhada de tracking.",
+      "Integração dos formulários com APIs para recebimento, normalização e encaminhamento de leads, incluindo atribuição de vendedores por página e domínio.",
+      "Implementação de regras configuráveis de validação de e-mail e telefone, proteção contra duplicidade e fluxos de correção e reprocessamento de envios.",
+      "Desenvolvimento de dashboard com autenticação, perfis de acesso, solicitação e ativação de usuários, gestão de contas e permissões administrativas.",
+      "Painel operacional com filtros, indicadores, tendências, leads recentes, campanhas, origens, sellers e domínios.",
+      "Acompanhamento de pageviews, conversões, visitantes ativos e atividade em tempo real, com visões geográficas de leads e visitantes.",
+      "Configuração por página de seller responsável, Meta Pixel, Google Tag e regras de proteção dos formulários.",
+      "API em Node.js/Express com MySQL, documentação Swagger/OpenAPI, health checks e integração com serviços externos, incluindo backup de dados em Google Sheets.",
+      "Organização da API e do dashboard em monorepo, com scripts de desenvolvimento, build e execução de ambiente integrado com Docker Compose.",
     ],
-    stack: ["React", "WordPress", "Vite", "Node.js", "MySQL", "Webhooks"],
-    note: "Projeto desenvolvido em ambiente profissional. Repositórios e detalhes internos não são públicos.",
+    stack: [
+      "React",
+      "Vite",
+      "Node.js",
+      "Express",
+      "JavaScript",
+      "MySQL",
+      "Docker",
+      "REST APIs",
+      "Swagger / OpenAPI",
+      "Webhooks",
+      "Google Sheets",
+      "Meta Pixel",
+      "Google Tag Manager",
+      "Linux",
+      "Nginx",
+    ],
+    note:
+      "Case profissional da Aliança. alianca-lps e dash-monorepo são partes do mesmo fluxo de trabalho; os repositórios, integrações e ambientes são privados e não têm relação com projetos de outras marcas.",
   },
   {
     number: "02",
-    category: "Projeto pessoal · Python",
-    title: "FiveM on Linux",
-    context: "Ferramenta desktop para Linux",
-    description:
-      "Aplicativo visual para preparar o FiveM for GTA V Enhanced reaproveitando a instalação do jogo e o prefixo Wine já configurado no Lutris.",
-    details: [
-      "Interface em Python para selecionar e validar os caminhos do jogo, do prefixo e do executável Wine.",
-      "Preparação do ambiente com backups antes de alterar registros e arquivos do prefixo.",
-      "Rotinas de instalação e desinstalação com opção de rollback para restaurar a configuração anterior.",
-      "Documentação de limitações conhecidas para não prometer compatibilidade que ainda não foi comprovada.",
+    name: "Projeto web para a Linx",
+    category: "Projeto acadêmico · SENAI CodeXP",
+    period: "Jul/2019 — Dez/2019",
+    summary:
+      "Projeto web desenvolvido em equipe multidisciplinar durante a formação Full Stack CodeXP, com participação de integrantes de produto, Scrum, design, frontend e backend.",
+    context:
+      "O trabalho percorreu etapas de levantamento de requisitos, prototipação e desenvolvimento, com organização por Scrum, Sprints, Trello e Kanban.",
+    contribution:
+      "Participação colaborativa no desenvolvimento da solução, aplicando fundamentos de frontend, orientação a objetos, arquitetura MVC, APIs e integração com banco de dados.",
+    highlights: [
+      "Colaboração entre Product Owner, Scrum Master, Design, Front-end e Back-end.",
+      "Levantamento de requisitos, prototipação, brainstorming e definição de personas.",
+      "Desenvolvimento com HTML5, CSS3, JavaScript e React.",
+      "Aplicação de orientação a objetos, arquitetura MVC e integração com APIs e banco de dados.",
+      "Organização do trabalho com Scrum, Sprints, Trello e Kanban.",
     ],
-    stack: ["Python", "Tkinter", "Bash", "Wine", "Lutris", "Linux"],
-    href: "https://github.com/VitorMartinsAlves/FiveM-on-Linux",
-    linkLabel: "Ver código e documentação",
-    note: "Experimental. O README descreve as limitações atuais de conexão a servidores públicos; o projeto não oferece essa funcionalidade como garantida.",
-  },
-  {
-    number: "03",
-    category: "Projeto pessoal · Linux",
-    title: "Two Clicks AeroTheme Plasma",
-    context: "Automação e personalização do KDE Plasma",
-    description:
-      "Fork e customização do AeroThemePlasma para reduzir etapas manuais de instalação e configuração em distribuições Arch e CachyOS.",
-    details: [
-      "Reescrita do instalador com tratamento de erros e validações mais defensivas.",
-      "Detecção de terminal em sandbox Flatpak e tentativa de reexecução no host.",
-      "Instalação de dependências, compilação de componentes e geração de manifestos para facilitar diagnóstico e remoção.",
-      "Scripts opcionais para configurar Konsole, fontes e atalhos de terminal.",
+    stack: [
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "React",
+      "MVC",
+      "APIs",
+      "SQL",
+      "Scrum",
+      "Trello",
+      "Kanban",
     ],
-    stack: ["Bash", "CMake", "KDE Plasma", "Flatpak", "Arch Linux"],
-    href: "https://github.com/VitorMartinsAlves/Two-Clicks-AeroThemePlasma",
-    linkLabel: "Ver código e documentação",
-    note: "É uma customização de um projeto existente. O tema, os componentes principais e seus créditos permanecem com o projeto AeroThemePlasma original.",
+    note:
+      "Projeto realizado em contexto de formação no SENAI; não representa vínculo profissional direto com a Linx.",
   },
 ];
 
-export const experiences = [
+export type ExperienceRole = {
+  title: string;
+  period: string;
+  type: string;
+  location?: string;
+  summary: string;
+  highlights: string[];
+  skills: string[];
+};
+
+export type ExperienceGroup = {
+  company: string;
+  period: string;
+  roles: ExperienceRole[];
+};
+
+export const experienceGroups: ExperienceGroup[] = [
   {
     company: "Aliança",
-    period: "Mai/2024 — Ago/2026",
-    summary:
-      "Atuação em tecnologia em diferentes frentes. As funções de suporte e desenvolvimento se sobrepuseram durante parte do período, combinando atendimento interno e construção de soluções web para campanhas e a operação comercial.",
+    period: "Jan/2024 — Set/2026 · 2 anos e 9 meses",
     roles: [
       {
         title: "Desenvolvedor Full Stack",
-        period: "Abr/2025 — Ago/2026",
-        description:
-          "Desenvolvimento e manutenção de landing pages, dashboards e integrações usadas no acompanhamento e encaminhamento de leads.",
+        period: "Jun/2025 — Set/2026",
+        type: "Tempo integral",
+        location: "Remoto",
+        summary:
+          "Desenvolvimento e manutenção de aplicações web em produção, atuando em frontend, backend, integrações e infraestrutura.",
+        highlights: [
+          "Desenvolvimento de aplicações com Vue.js, React, Node.js e APIs REST.",
+          "Criação e evolução de landing pages responsivas e multilíngues, integradas a sistemas internos, formulários, webhooks e ferramentas de rastreamento como Meta Pixel e Google Tag Manager.",
+          "Desenvolvimento de dashboards, automações e funcionalidades para gestão de leads, alunos, professores, contratos e aulas.",
+          "Integração com bancos de dados MySQL/MariaDB e MongoDB, além de serviços externos e Google Calendar.",
+          "Atuação em deploy, Docker, Linux, Nginx, Cloudflare, DNS, monitoramento, correção de bugs, otimização de performance e manutenção de ambientes em produção.",
+          "Participação no ciclo completo das soluções: interface, regras de negócio, backend, banco de dados, integrações e publicação.",
+        ],
+        skills: [
+          "Vue.js",
+          "React",
+          "Node.js",
+          "APIs REST",
+          "MySQL",
+          "MariaDB",
+          "MongoDB",
+          "Docker",
+          "Linux",
+          "Nginx",
+          "Cloudflare",
+        ],
       },
       {
         title: "Analista de Suporte",
         period: "Abr/2025 — Out/2025",
-        description:
-          "Atendimento de demandas internas de TI, suporte aos usuários e investigação de problemas relacionados a sistemas e ferramentas de trabalho.",
+        type: "Tempo integral",
+        location: "Remoto",
+        summary:
+          "Suporte técnico a usuários, equipe comercial, professores e áreas internas, com diagnóstico de problemas e acompanhamento de correções nos sistemas da empresa.",
+        highlights: [
+          "Diagnóstico e resolução de problemas em sistemas e ferramentas internas.",
+          "Identificação, registro e acompanhamento de bugs e comportamentos inesperados.",
+          "Testes de novas funcionalidades e validação de correções antes da publicação em produção.",
+          "Atualização e correção de dados, apoio no uso das plataformas e análise de solicitações para direcionamento ao desenvolvimento.",
+          "Apoio técnico em integrações, acessos, configurações e resolução de incidentes.",
+        ],
+        skills: [
+          "Suporte técnico",
+          "Help Desk",
+          "Testes de software",
+          "Análise de bugs",
+          "Atendimento",
+        ],
       },
       {
         title: "Estagiário de TI",
         period: "Mai/2024 — Mai/2025",
-        description:
-          "Apoio às rotinas de tecnologia, atendimento e suporte ao ambiente interno.",
+        type: "Estágio",
+        location: "Híbrido",
+        summary:
+          "Suporte aos setores comercial, pedagógico, treinamento de professores e docentes, contribuindo para a continuidade das operações e a melhoria das plataformas.",
+        highlights: [
+          "Atendimento às necessidades de diferentes áreas e apoio à utilização dos sistemas.",
+          "Alterações e atualizações de dados conforme as solicitações dos setores.",
+          "Identificação e reporte de bugs à equipe de desenvolvimento.",
+          "Testes de sistema antes do lançamento de atualizações.",
+          "Coleta de sugestões do setor comercial para melhoria dos sistemas e processos.",
+        ],
+        skills: [
+          "Suporte de TI",
+          "Testes de sistema",
+          "Banco de dados",
+          "Atendimento",
+          "Melhoria de processos",
+        ],
+      },
+      {
+        title: "Assistente Comercial",
+        period: "Jan/2024 — Mai/2024",
+        type: "Tempo integral",
+        location: "Remoto",
+        summary:
+          "Atuação em rotinas de apoio comercial, com utilização de ferramentas Google para organização de informações e documentos.",
+        highlights: [
+          "Utilização de Google Sheets e Google Docs no apoio às atividades e rotinas comerciais.",
+        ],
+        skills: ["Google Sheets", "Google Docs", "Rotinas comerciais"],
+      },
+    ],
+  },
+  {
+    company: "Atuação autônoma",
+    period: "Jan/2022 — Jan/2024",
+    roles: [
+      {
+        title: "Designer Gráfico",
+        period: "Jan/2022 — Jan/2024",
+        type: "Autônomo",
+        summary:
+          "Atuação independente na criação e edição de materiais visuais, utilizando ferramentas da suíte Adobe.",
+        highlights: [
+          "Criação e edição de peças gráficas com Adobe Photoshop e After Effects.",
+        ],
+        skills: ["Adobe Photoshop", "Adobe After Effects"],
+      },
+    ],
+  },
+  {
+    company: "maKing Advertising",
+    period: "Set/2021 — Dez/2021",
+    roles: [
+      {
+        title: "Designer Gráfico",
+        period: "Set/2021 — Dez/2021",
+        type: "Jovem Aprendiz",
+        summary:
+          "Experiência inicial em design gráfico em ambiente de agência.",
+        highlights: [
+          "Atuação com Adobe Photoshop e Adobe Illustrator na produção de materiais visuais.",
+        ],
+        skills: ["Adobe Photoshop", "Adobe Illustrator"],
       },
     ],
   },
@@ -95,23 +251,109 @@ export const experiences = [
 
 export const skillGroups = [
   {
+    title: "Backend e integrações",
+    description: "Construção de serviços, regras de negócio e comunicação entre sistemas.",
+    skills: [
+      "Node.js",
+      "Express.js",
+      "Python",
+      "APIs REST",
+      "Webhooks",
+      "Swagger / OpenAPI",
+    ],
+  },
+  {
     title: "Frontend",
-    skills: ["React", "JavaScript", "TypeScript", "HTML", "CSS", "Vite", "Next.js"],
+    description: "Interfaces web, aplicações administrativas e páginas responsivas.",
+    skills: [
+      "React.js",
+      "Next.js",
+      "Vue.js",
+      "JavaScript",
+      "TypeScript",
+      "HTML5",
+      "CSS3",
+      "Angular",
+      "WordPress",
+    ],
   },
   {
-    title: "Backend e dados",
-    skills: ["Node.js", "Express", "APIs REST", "MySQL", "Webhooks", "UTM tracking"],
+    title: "Bancos de dados",
+    description: "Persistência, consultas e integração com dados relacionais e NoSQL.",
+    skills: ["MySQL", "MariaDB", "MongoDB", "SQL"],
   },
   {
-    title: "Plataformas e ferramentas",
-    skills: ["WordPress", "Git", "GitHub", "Linux", "Bash", "Python"],
+    title: "Infraestrutura e operação",
+    description: "Publicação, manutenção e acompanhamento de aplicações em produção.",
+    skills: [
+      "Docker",
+      "Linux",
+      "Nginx",
+      "Cloudflare",
+      "DNS",
+      "Deploy",
+      "Monitoramento",
+    ],
+  },
+  {
+    title: "Integrações e ferramentas",
+    description: "Serviços externos, rastreamento de campanhas e colaboração.",
+    skills: [
+      "Google Calendar",
+      "Google Sheets",
+      "Meta Pixel",
+      "Google Tag Manager",
+      "Git",
+      "GitHub",
+    ],
   },
 ];
 
-export const education = {
-  course: "Análise e Desenvolvimento de Sistemas",
-  institution: "Cruzeiro do Sul",
-  status: "Curso em pausa",
-  note: "Formação interrompida no último semestre.",
-  english: "Inglês intermediário",
-};
+export const additionalSkills = [
+  "Suporte técnico",
+  "Help Desk",
+  "Análise e reprodução de bugs",
+  "Testes de funcionalidades",
+  "Google Workspace",
+  "Adobe Photoshop",
+  "Adobe After Effects",
+  "Adobe Illustrator",
+];
+
+export const education = [
+  {
+    institution: "Universidade Cruzeiro do Sul",
+    course: "Análise e Desenvolvimento de Sistemas",
+    period: "Mar/2023 — Dez/2024",
+    status: "Curso interrompido antes da conclusão",
+    note: "Estudos pausados no último semestre.",
+    highlights: [],
+  },
+  {
+    institution: "SENAI São Caetano do Sul — Cyber e IA",
+    course: "Full Stack — CodeXP / Programação de Computadores",
+    period: "Jul/2019 — Dez/2019",
+    status: "Formação concluída",
+    note: "Formação com projeto web em equipe multidisciplinar e práticas de desenvolvimento ágil.",
+    highlights: [
+      "Projeto web para a Linx, da etapa de requisitos e prototipação à implementação.",
+      "HTML5, CSS3, JavaScript, React, orientação a objetos, MVC, APIs e banco de dados.",
+      "Organização de trabalho com Scrum, Sprints, Trello e Kanban.",
+    ],
+  },
+];
+
+export const certifications = [
+  {
+    title: "Desenvolvimento Orientado a Objetos utilizando a Linguagem Python",
+    institution: "Fundação Bradesco — Escola Virtual",
+    issued: "Mai/2023",
+  },
+  {
+    title: "Fundamentos de Lógica de Programação",
+    institution: "Fundação Bradesco — Escola Virtual",
+    issued: "Mai/2023",
+  },
+];
+
+export const languages = [{ name: "Inglês", level: "Intermediário" }];

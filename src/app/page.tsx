@@ -4,8 +4,10 @@ import { SectionHeading } from "@/components/section-heading";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import {
+  certifications,
   education,
-  experiences,
+  experienceGroups,
+  languages,
   profile,
   projects,
   skillGroups,
@@ -15,19 +17,23 @@ const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: profile.name,
-  jobTitle: profile.role,
-  description: profile.intro,
+  jobTitle: profile.title,
+  description: profile.summary,
   email: profile.email,
   sameAs: [profile.github, profile.linkedin],
   knowsAbout: skillGroups.flatMap((group) => group.skills),
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "São Paulo",
+    addressRegion: "SP",
+    addressCountry: "BR",
+  },
 };
 
 export default function HomePage() {
   return (
     <>
-      <a className="skip-link" href="#conteudo">
-        Pular para o conteúdo
-      </a>
+      <a className="skip-link" href="#conteudo">Pular para o conteúdo</a>
       <SiteHeader />
 
       <main id="conteudo">
@@ -35,68 +41,91 @@ export default function HomePage() {
           <div className="hero-copy">
             <p className="eyebrow">
               <span className="eyebrow-dot" aria-hidden="true" />
-              Portfólio profissional
+              {profile.availability}
             </p>
             <h1 id="hero-title">
-              Desenvolvedor
-              <br />
-              <span>Full Stack.</span>
+              {profile.title}
+              <span className="hero-period">.</span>
             </h1>
-            <p className="hero-lead">{profile.headline}</p>
-            <p className="hero-description">{profile.intro}</p>
+            <p className="hero-stackline">{profile.headline}</p>
+            <p className="hero-description">{profile.summary}</p>
+
+            <div className="hero-meta">
+              <span><span aria-hidden="true">⌖</span> {profile.location}</span>
+              <span>{profile.workModel}</span>
+              <span>Inglês intermediário</span>
+            </div>
 
             <div className="hero-actions">
               <a className="button button-primary" href="#projetos">
-                Conhecer projetos <span aria-hidden="true">↓</span>
+                Ver projetos <span aria-hidden="true">↓</span>
               </a>
-              <a className="button button-secondary" href={`mailto:${profile.email}?subject=Oportunidade%20profissional`}>
-                Entrar em contato <span aria-hidden="true">↗</span>
+              <Link className="button button-secondary" href="/curriculo/">
+                Currículo completo <span aria-hidden="true">↗</span>
+              </Link>
+              <a className="button button-text" href={"mailto:" + profile.email + "?subject=Oportunidade%20profissional"}>
+                Entrar em contato
               </a>
             </div>
 
             <div className="hero-socials" aria-label="Perfis profissionais">
-              <a href={profile.linkedin} target="_blank" rel="noreferrer">
-                LinkedIn ↗
-              </a>
-              <a href={profile.github} target="_blank" rel="noreferrer">
-                GitHub ↗
-              </a>
-              <Link href="/curriculo/">Currículo para impressão ↗</Link>
+              <a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>
+              <a href={profile.github} target="_blank" rel="noreferrer">GitHub ↗</a>
+              <a href={"mailto:" + profile.email}>{profile.email}</a>
             </div>
           </div>
 
-          <aside className="hero-aside" aria-label="Resumo profissional">
+          <aside className="hero-aside" aria-label="Resumo de competências">
             <div className="aside-top">
-              <span>PERFIL</span>
-              <span>01 / 04</span>
+              <span>PERFIL PROFISSIONAL</span>
+              <span>2026</span>
             </div>
-            <div className="monogram" aria-hidden="true">
-              VM<span>.</span>
+            <div className="aside-main">
+              <p className="aside-overline">Atuação</p>
+              <h2>Do produto à produção.</h2>
+              <p>
+                Desenvolvimento de aplicações, integração de serviços e sustentação de
+                sistemas usados no dia a dia das equipes.
+              </p>
             </div>
-            <p className="aside-label">Áreas de atuação</p>
-            <ul className="focus-list">
-              <li>Desenvolvimento de aplicações web</li>
-              <li>APIs e integração entre sistemas</li>
-              <li>Automação de processos</li>
-            </ul>
+            <div className="aside-stack">
+              <span>Stack principal</span>
+              <strong>Node.js · React · Python</strong>
+              <strong>MySQL · MongoDB · APIs REST</strong>
+            </div>
             <div className="aside-bottom">
-              <span>React · Node.js · MySQL</span>
-              <span>Brasil</span>
+              <span>Full Stack</span>
+              <span>Backend</span>
+              <span>Integrações</span>
             </div>
           </aside>
         </section>
 
-        <div className="ticker page-width" aria-label="Principais tecnologias">
-          <span>TECNOLOGIAS</span>
-          <p>React <i>·</i> JavaScript <i>·</i> TypeScript <i>·</i> Node.js <i>·</i> MySQL <i>·</i> WordPress <i>·</i> Linux</p>
+        <div className="proof-strip page-width" aria-label="Resumo da trajetória">
+          <div>
+            <strong>2 anos e 9 meses</strong>
+            <span>de trajetória na Aliança</span>
+          </div>
+          <div>
+            <strong>Full Stack + Suporte</strong>
+            <span>experiência em desenvolvimento e operação</span>
+          </div>
+          <div>
+            <strong>Produção real</strong>
+            <span>deploy, monitoramento e correção de bugs</span>
+          </div>
+          <div>
+            <strong>Visão de negócio</strong>
+            <span>contato com comercial, pedagógico e usuários</span>
+          </div>
         </div>
 
         <section className="section page-width" id="projetos">
           <SectionHeading
             index="01"
-            eyebrow="Trabalho selecionado"
-            title="Projetos com contexto, não só uma lista de tecnologias."
-            description="O que foi construído, qual foi minha participação e quais decisões técnicas fizeram parte do trabalho."
+            eyebrow="Projetos em destaque"
+            title="Soluções que conectam produto, operação e tecnologia."
+            description="Dois projetos profissionais desenvolvidos na Aliança e um projeto de formação. Cada descrição separa contexto, participação e entregas técnicas."
           />
           <div className="projects-list">
             {projects.map((project) => (
@@ -109,30 +138,46 @@ export default function HomePage() {
           <div className="page-width">
             <SectionHeading
               index="02"
-              eyebrow="Trajetória profissional"
-              title="Experiência construída na prática."
-              description="Minha atuação em tecnologia passou por suporte, desenvolvimento de interfaces e integração de sistemas."
+              eyebrow="Experiência profissional"
+              title="Uma trajetória que começou no atendimento e chegou ao desenvolvimento full stack."
+              description="A experiência com usuários e áreas de negócio veio antes e continuou junto do desenvolvimento. Os períodos abaixo refletem os cargos registrados no LinkedIn; algumas funções se sobrepuseram."
             />
+
             <div className="experience-list">
-              {experiences.map((experience) => (
-                <article className="experience-entry" key={experience.company}>
-                  <div className="experience-company">
-                    <h3>{experience.company}</h3>
-                    <span>{experience.period}</span>
-                  </div>
-                  <div className="experience-content">
-                    <p className="experience-summary">{experience.summary}</p>
-                    <div className="role-list">
-                      {experience.roles.map((role) => (
-                        <div className="role-entry" key={role.title}>
-                          <div className="role-heading">
-                            <h4>{role.title}</h4>
-                            <span>{role.period}</span>
-                          </div>
-                          <p>{role.description}</p>
-                        </div>
-                      ))}
+              {experienceGroups.map((group, groupIndex) => (
+                <article className="experience-company" key={group.company}>
+                  <div className="company-heading">
+                    <div>
+                      <span className="company-index">0{groupIndex + 1}</span>
+                      <h3>{group.company}</h3>
                     </div>
+                    <span className="company-period">{group.period}</span>
+                  </div>
+
+                  <div className="company-roles">
+                    {group.roles.map((role) => (
+                      <section className="role-entry" key={role.title}>
+                        <div className="role-heading">
+                          <div>
+                            <h4>{role.title}</h4>
+                            <span>{role.type}</span>
+                            {role.location ? <span>{role.location}</span> : null}
+                          </div>
+                          <time>{role.period}</time>
+                        </div>
+                        <p className="role-summary">{role.summary}</p>
+                        <ul className="role-highlights">
+                          {role.highlights.map((highlight) => (
+                            <li key={highlight}>{highlight}</li>
+                          ))}
+                        </ul>
+                        <div className="tag-list compact-tags">
+                          {role.skills.map((skill) => (
+                            <span className="tag" key={skill}>{skill}</span>
+                          ))}
+                        </div>
+                      </section>
+                    ))}
                   </div>
                 </article>
               ))}
@@ -140,71 +185,129 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="section page-width" id="sobre">
+        <section className="section page-width" id="competencias">
           <SectionHeading
             index="03"
-            eyebrow="Sobre e competências"
-            title="Entender o fluxo inteiro faz parte do trabalho."
-            description="Gosto de entender como a interface, os dados e os processos se conectam antes de escolher a solução."
+            eyebrow="Competências técnicas"
+            title="Tecnologias aplicadas em diferentes partes do ciclo de desenvolvimento."
+            description="As competências estão agrupadas por contexto de uso. A ênfase está em backend, frontend, dados e operação de aplicações."
           />
-          <div className="about-grid">
-            <div className="about-copy">
-              <p>
-                Minha experiência reúne desenvolvimento web e suporte de TI. Isso me
-                aproximou tanto de quem usa os sistemas quanto de quem precisa manter
-                as ferramentas funcionando.
-              </p>
-              <p>
-                No desenvolvimento, tenho trabalhado principalmente com aplicações
-                JavaScript, páginas de campanha, APIs, bancos relacionais e integrações.
-                Também mantenho projetos pessoais voltados a Linux e automação.
-              </p>
-              <div className="education-card">
-                <span className="small-label">FORMAÇÃO</span>
-                <h3>{education.course}</h3>
-                <p>{education.institution} · {education.status}</p>
-                <span className="education-note">{education.note}</span>
-                <div className="education-language">
-                  <span>Inglês</span>
-                  <strong>{education.english.replace("Inglês ", "")}</strong>
+
+          <div className="skills-grid">
+            {skillGroups.map((group, index) => (
+              <article className="skill-card" key={group.title}>
+                <div className="skill-card-heading">
+                  <span>0{index + 1}</span>
+                  <h3>{group.title}</h3>
                 </div>
+                <p>{group.description}</p>
+                <div className="tag-list">
+                  {group.skills.map((skill) => (
+                    <span className="tag" key={skill}>{skill}</span>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <div className="additional-skills">
+            <span>Outras competências</span>
+            <p>
+              Suporte técnico e Help Desk · análise e reprodução de bugs · testes de
+              funcionalidades · Google Workspace · Adobe Photoshop · Adobe After Effects
+              · Adobe Illustrator
+            </p>
+          </div>
+        </section>
+
+        <section className="section section-muted" id="formacao">
+          <div className="page-width">
+            <SectionHeading
+              index="04"
+              eyebrow="Formação e cursos"
+              title="Base técnica em desenvolvimento e aprendizado contínuo."
+              description="Formação acadêmica, curso técnico e certificações informadas no perfil profissional."
+            />
+
+            <div className="education-list">
+              {education.map((item) => (
+                <article className="education-entry" key={item.institution}>
+                  <div className="education-period">{item.period}</div>
+                  <div>
+                    <h3>{item.course}</h3>
+                    <p className="education-institution">{item.institution}</p>
+                    <p className="education-status">{item.status} · {item.note}</p>
+                    {item.highlights.length > 0 ? (
+                      <ul>
+                        {item.highlights.map((highlight) => (
+                          <li key={highlight}>{highlight}</li>
+                        ))}
+                      </ul>
+                    ) : null}
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            <div className="certification-block">
+              <div className="certification-heading">
+                <span className="case-label">Cursos e certificados</span>
+                <span className="certification-provider">Fundação Bradesco · Escola Virtual</span>
+              </div>
+              <div className="certification-list">
+                {certifications.map((certification) => (
+                  <article key={certification.title}>
+                    <div>
+                      <h3>{certification.title}</h3>
+                      <p>{certification.institution}</p>
+                    </div>
+                    <span>{certification.issued}</span>
+                  </article>
+                ))}
               </div>
             </div>
 
-            <div className="skills-panel">
-              {skillGroups.map((group, index) => (
-                <div className="skill-group" key={group.title}>
-                  <div className="skill-heading">
-                    <span>0{index + 1}</span>
-                    <h3>{group.title}</h3>
-                  </div>
-                  <div className="tag-list">
-                    {group.skills.map((skill) => (
-                      <span className="tag" key={skill}>{skill}</span>
-                    ))}
-                  </div>
+            <div className="language-row">
+              {languages.map((language) => (
+                <div key={language.name}>
+                  <span>{language.name}</span>
+                  <strong>{language.level}</strong>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
+        <section className="about-section page-width" id="sobre">
+          <div className="about-label">
+            <span>05</span>
+            <span>Sobre mim</span>
+          </div>
+          <div className="about-content">
+            <h2>Experiência técnica com atenção a quem usa o sistema.</h2>
+            <p>{profile.about}</p>
+          </div>
+        </section>
+
         <section className="contact-section" id="contato">
           <div className="page-width contact-inner">
             <div>
-              <p className="eyebrow">Próximo passo</p>
-              <h2>Vamos conversar sobre o que sua equipe precisa construir.</h2>
+              <p className="eyebrow">Contato profissional</p>
+              <h2>Está procurando alguém para desenvolver e evoluir suas aplicações?</h2>
               <p>
-                Para oportunidades, projetos ou uma conversa técnica, o melhor caminho
-                é me chamar por e-mail ou pelo LinkedIn.
+                Estou buscando oportunidades como Desenvolvedor Full Stack ou Backend
+                em São Paulo, com preferência por modelos presencial ou híbrido.
               </p>
             </div>
             <div className="contact-actions">
-              <a className="button button-light" href={`mailto:${profile.email}?subject=Oportunidade%20profissional`}>
+              <a className="button button-light" href={"mailto:" + profile.email + "?subject=Oportunidade%20profissional"}>
                 Enviar e-mail <span aria-hidden="true">↗</span>
               </a>
               <a className="contact-link" href={profile.linkedin} target="_blank" rel="noreferrer">
-                Falar pelo LinkedIn ↗
+                Conversar pelo LinkedIn ↗
+              </a>
+              <a className="contact-link" href={profile.github} target="_blank" rel="noreferrer">
+                Ver GitHub ↗
               </a>
               <span className="contact-email">{profile.email}</span>
             </div>

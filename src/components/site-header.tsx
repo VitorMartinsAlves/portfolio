@@ -4,7 +4,8 @@ import { profile } from "@/data/portfolio";
 const navigation = [
   { label: "Projetos", href: "#projetos" },
   { label: "Experiência", href: "#experiencia" },
-  { label: "Sobre", href: "#sobre" },
+  { label: "Competências", href: "#competencias" },
+  { label: "Formação", href: "#formacao" },
 ];
 
 export function SiteHeader() {
@@ -17,16 +18,16 @@ export function SiteHeader() {
 
       <nav className="main-nav" aria-label="Navegação principal">
         {navigation.map((item) => (
-          <a href={item.href} key={item.href}>
-            {item.label}
-          </a>
+          <a href={item.href} key={item.href}>{item.label}</a>
         ))}
-        <Link href="/curriculo/">Currículo</Link>
       </nav>
 
-      <a className="header-contact" href={`mailto:${profile.email}?subject=Oportunidade%20profissional`}>
-        Vamos conversar <span aria-hidden="true">↗</span>
-      </a>
+      <div className="header-actions">
+        <Link className="header-resume" href="/curriculo/">Currículo</Link>
+        <a className="header-contact" href={"mailto:" + profile.email + "?subject=Oportunidade%20profissional"}>
+          Contato <span aria-hidden="true">↗</span>
+        </a>
+      </div>
     </header>
   );
 }

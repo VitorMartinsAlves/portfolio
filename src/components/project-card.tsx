@@ -1,70 +1,55 @@
+import type { PortfolioProject } from "@/data/portfolio";
+
 type ProjectCardProps = {
-  project: {
-    number: string;
-    category: string;
-    title: string;
-    context: string;
-    description: string;
-    details: string[];
-    stack: string[];
-    href?: string;
-    linkLabel?: string;
-    note: string;
-  };
+  project: PortfolioProject;
 };
 
 export function ProjectCard({ project }: ProjectCardProps) {
   return (
     <article className="project-card">
-      <div className="project-topline">
-        <span className="project-number">{project.number}</span>
-        <span className="project-category">{project.category}</span>
+      <div className="project-index">
+        <span>{project.number}</span>
+        <span>{project.category}</span>
       </div>
 
-      <div className="project-main">
-        <div className="project-heading">
+      <div className="project-content">
+        <div className="project-title-row">
           <div>
-            <p className="project-context">{project.context}</p>
-            <h3>{project.title}</h3>
+            <p className="project-period">{project.period}</p>
+            <h3>{project.name}</h3>
           </div>
-          {project.href ? (
-            <a
-              className="project-link"
-              href={project.href}
-              target="_blank"
-              rel="noreferrer"
-              aria-label={`${project.linkLabel}: ${project.title}`}
-            >
-              <span aria-hidden="true">↗</span>
-            </a>
-          ) : null}
+          <span className="project-kind">{project.category.includes("acadêmico") ? "Acadêmico" : "Profissional"}</span>
         </div>
 
-        <p className="project-description">{project.description}</p>
+        <p className="project-summary">{project.summary}</p>
 
-        <ul className="project-details">
-          {project.details.map((detail) => (
-            <li key={detail}>{detail}</li>
-          ))}
-        </ul>
+        <div className="case-grid">
+          <div className="case-block">
+            <span className="case-label">Contexto</span>
+            <p>{project.context}</p>
+          </div>
+          <div className="case-block">
+            <span className="case-label">Minha participação</span>
+            <p>{project.contribution}</p>
+          </div>
+        </div>
 
-        <div className="tag-list" aria-label="Tecnologias utilizadas">
+        <div className="project-highlights">
+          <span className="case-label">O que foi desenvolvido</span>
+          <ul>
+            {project.highlights.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="tag-list" aria-label="Tecnologias e práticas utilizadas">
           {project.stack.map((item) => (
-            <span className="tag" key={item}>
-              {item}
-            </span>
+            <span className="tag" key={item}>{item}</span>
           ))}
         </div>
 
         <p className="project-note">{project.note}</p>
-
-        {project.href && project.linkLabel ? (
-          <a className="text-link" href={project.href} target="_blank" rel="noreferrer">
-            {project.linkLabel} <span aria-hidden="true">↗</span>
-          </a>
-        ) : (
-          <span className="private-label">Experiência profissional · detalhes internos</span>
-        )}
       </div>
     </article>
   );
