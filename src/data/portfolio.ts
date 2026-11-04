@@ -69,7 +69,7 @@ export const experiences = [
     company: "Aliança",
     period: "Mai/2024 — Ago/2026",
     summary:
-      "Atuação em tecnologia em diferentes frentes, combinando suporte interno e desenvolvimento de soluções web para campanhas e operação comercial.",
+      "Atuação em tecnologia em diferentes frentes. As funções de suporte e desenvolvimento se sobrepuseram durante parte do período, combinando atendimento interno e construção de soluções web para campanhas e a operação comercial.",
     roles: [
       {
         title: "Desenvolvedor Full Stack",
@@ -96,7 +96,7 @@ export const experiences = [
 export const skillGroups = [
   {
     title: "Frontend",
-    skills: ["React", "JavaScript", "TypeScript", "HTML", "CSS", "Vite"],
+    skills: ["React", "JavaScript", "TypeScript", "HTML", "CSS", "Vite", "Next.js"],
   },
   {
     title: "Backend e dados",

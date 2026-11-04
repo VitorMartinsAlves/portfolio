@@ -333,13 +333,14 @@ button:focus-visible {
 .project-category { color: var(--muted); font-size: 9px; letter-spacing: 0.04em; }
 .project-main { min-width: 0; }
 
-.project-heading,
-.project-heading > div {
+.project-heading {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   gap: 20px;
 }
+
+.project-heading > div { min-width: 0; }
 
 .project-context { margin: 0 0 8px; color: var(--muted); font-size: 9px; }
 
